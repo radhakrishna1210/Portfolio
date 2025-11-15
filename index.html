@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radhakrishna Thete | AI/ML Portfolio</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="description" content="Radhakrishna Thete — AI/ML Developer crafting intelligent products with React, Tailwind, and cutting-edge machine learning.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHNv6+XK7arMBa0X4dK6Yf0nqf0RukTBr2xv5IOQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Poppins', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                        },
+                    },
+                    backgroundImage: {
+                        'noise': "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E\")",
+                        'radial-glow': 'radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.2), transparent 55%)',
+                        'radial-glow-2': 'radial-gradient(circle at 80% 0%, rgba(14, 165, 233, 0.18), transparent 45%)',
+                        'radial-glow-3': 'radial-gradient(circle at 10% 90%, rgba(236, 72, 153, 0.18), transparent 48%)',
+                    },
+                },
+            },
+        };
+    </script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@11/dist/framer-motion.umd.min.js"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased transition-colors duration-500">
+    <div id="root" class="relative"></div>
+    <noscript>
+        <div class="flex min-h-screen items-center justify-center bg-slate-950 p-6 text-center text-slate-100">
+            <div>
+                <h1 class="mb-4 text-3xl font-semibold">JavaScript Disabled</h1>
+                <p class="text-slate-400">Please enable JavaScript to experience Radhakrishna Thete’s interactive AI/ML portfolio.</p>
+            </div>
+        </div>
+    </noscript>
+    <script type="text/babel">
+        const { useEffect, useState, useMemo } = React;
+        // Framer Motion - check what's available
+        let motion, AnimatePresence;
+        
+        if (typeof window !== 'undefined') {
+            // Check various possible global names
+            if (window.Motion) {
+                motion = window.Motion.motion || window.Motion;
+                AnimatePresence = window.Motion.AnimatePresence || window.Motion;
+            } else if (window.framerMotion) {
+                motion = window.framerMotion.motion || window.framerMotion;
+                AnimatePresence = window.framerMotion.AnimatePresence;
+            } else {
+                // Fallback: create simple components
+                const createSimple = (tag) => ({ children, className, ...props }) => 
+                    React.createElement(tag, { className, ...props }, children);
+                motion = {
+                    div: createSimple('div'),
+                    span: createSimple('span'),
+                    a: createSimple('a'),
+                    p: createSimple('p'),
+                    nav: createSimple('nav'),
+                    section: createSimple('section'),
+                    footer: createSimple('footer'),
+                };
+                AnimatePresence = ({ children }) => children;
+            }
+        }
+
+        const roles = ["AI Developer", "Machine Learning Engineer", "Web Developer", "Innovator"];
+
+        const projects = [
+            {
+                title: "BookNGo",
+                description: "Movie booking experience powered by TMDB API, realtime seat intelligence, and immersive UI.",
+                tech: ["React", "MongoDB", "Node.js"],
+                github: "https://github.com/",
+                live: "#",
+                icon: "fa-clapperboard",
+            },
+            {
+                title: "Melodify",
+                description: "Personalized music recommendation engine with hybrid collaborative + content-based filtering.",
+                tech: ["Python", "Flask", "Pandas", "Scikit-learn"],
+                github: "https://github.com/",
+                live: "#",
+                icon: "fa-music",
+            },
+            {
+                title: "AI Resume Parser",
+                description: "NLP pipeline that extracts structured insights from resumes with precision and empathy.",
+                tech: ["Python", "Flask", "SpaCy", "Pandas"],
+                github: "https://github.com/",
+                live: "#",
+                icon: "fa-file-lines",
+            },
+            {
+                title: "House Price Predictor",
+                description: "Explainable ML forecasts deployed via Flask with interactive dashboards for analysts.",
+                tech: ["Python", "Flask", "Scikit-learn", "HTML/CSS"],
+                github: "https://github.com/",
+                live: "#",
+                icon: "fa-city",
+            },
+        ];
+
+        const skills = [
+            {
+                label: "Languages",
+                items: ["Python", "JavaScript", "SQL"],
+            },
+            {
+                label: "ML Libraries",
+                items: ["NumPy", "Pandas", "Scikit-learn", "TensorFlow", "PyTorch"],
+            },
+            {
+                label: "Tools",
+                items: ["Jupyter", "VS Code", "Git", "MongoDB", "MySQL"],
+            },
+            {
+                label: "Frameworks",
+                items: ["Flask", "FastAPI", "React", "Streamlit"],
+            },
+        ];
+
+        const achievements = {
+            internships: ["Intern – Web Development & ML Support @ Tantrata Solutions"],
+            awards: ["Winner – Smart India Hackathon (if applicable)"],
+            certificates: ["AWS", "Coursera", "Kaggle"],
+        };
+
+        const socialLinks = [
+            { label: "GitHub", href: "https://github.com/radhakrishna1210", icon: "fa-brands fa-github" },
+            { label: "LinkedIn", href: "https://www.linkedin.com/in/radhakrishna-thete-33640832b", icon: "fa-brands fa-linkedin-in" },
+            { label: "Email", href: "mailto:theteradhakrishna@gmail.com", icon: "fa-solid fa-envelope" },
+        ];
+        
+        const footerSocialLinks = [
+            { label: "LinkedIn", href: "https://www.linkedin.com/in/radhakrishna-thete-33640832b", icon: "fa-brands fa-linkedin-in" },
+            { label: "GitHub", href: "https://github.com/radhakrishna1210", icon: "fa-brands fa-github" },
+            { label: "Email", href: "mailto:theteradhakrishna@gmail.com", icon: "fa-solid fa-envelope" },
+        ];
+
+        const navItems = [
+            { label: "Home", id: "home" },
+            { label: "About", id: "about" },
+            { label: "Skills", id: "skills" },
+            { label: "Projects", id: "projects" },
+            { label: "Achievements", id: "achievements" },
+            { label: "Resume", id: "resume", isExternal: true },
+            { label: "Contact", id: "contact" },
+        ];
+
+        const SectionTitle = ({ overline, title, subtitle }) => (
+            <div className="mb-12 flex flex-col gap-4 text-left">
+                <div className="text-xs font-semibold uppercase tracking-[0.32rem] text-brand-300 dark:text-brand-200">
+                    {overline}
+                </div>
+                <h2 className="text-3xl font-semibold text-slate-900 dark:text-white sm:text-4xl">{title}</h2>
+                {subtitle && (
+                    <p className="max-w-2xl text-base text-slate-600 dark:text-slate-300">{subtitle}</p>
+                )}
+            </div>
+        );
+
+        const Counter = ({ label, value, icon }) => {
+            const [count, setCount] = useState(0);
+            useEffect(() => {
+                let frame;
+                let start;
+                const duration = 1800;
+                const animate = (timestamp) => {
+                    if (!start) start = timestamp;
+                    const progress = Math.min((timestamp - start) / duration, 1);
+                    setCount(Math.floor(progress * value));
+                    if (progress < 1) {
+                        frame = requestAnimationFrame(animate);
+                    }
+                };
+                frame = requestAnimationFrame(animate);
+                return () => cancelAnimationFrame(frame);
+            }, [value]);
+
+            return (
+                <motion.div
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    className="relative flex flex-col gap-3 overflow-hidden rounded-2xl border border-slate-800/50 bg-slate-900/60 p-6 backdrop-blur-lg transition hover:-translate-y-2 hover:border-brand-400/60 hover:shadow-2xl hover:shadow-brand-500/20"
+                >
+                    <span className="text-2xl text-brand-400">
+                        <i className={icon}></i>
+                    </span>
+                    <div className="text-4xl font-semibold text-white">{count}+</div>
+                    <div className="text-sm uppercase tracking-[0.24rem] text-slate-400">{label}</div>
+                    <div className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-500/5 to-transparent"></div>
+                </motion.div>
+            );
+        };
+
+        const TimelineItem = ({ year, title, description, alignLeft }) => (
+            <motion.div
+                initial={{ opacity: 0, x: alignLeft ? -40 : 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                className={`relative flex w-full flex-col gap-4 rounded-2xl border border-slate-800/60 bg-slate-900/60 p-6 backdrop-blur-lg transition hover:border-brand-400/60 hover:bg-slate-900/80 ${alignLeft ? 'sm:mr-auto sm:max-w-md' : 'sm:ml-auto sm:max-w-md'}`}
+            >
+                <div className="text-xs font-semibold uppercase tracking-[0.3rem] text-brand-300">{year}</div>
+                <h3 className="text-xl font-semibold text-white">{title}</h3>
+                <p className="text-sm text-slate-300">{description}</p>
+                <span className="pointer-events-none absolute -left-4 top-6 z-10 hidden h-5 w-5 rounded-full border-2 border-slate-950 bg-brand-400 shadow-lg shadow-brand-500/50 dark:border-slate-950 sm:block"></span>
+                <span className="pointer-events-none absolute -right-4 top-6 z-10 block h-5 w-5 rounded-full border-2 border-slate-950 bg-brand-400 shadow-lg shadow-brand-500/50 dark:border-slate-950 sm:hidden"></span>
+            </motion.div>
+        );
+
+        const useTheme = () => {
+            const [dark, setDark] = useState(() => {
+                const stored = localStorage.getItem('rt-theme');
+                if (stored) return stored === 'dark';
+                return window.matchMedia('(prefers-color-scheme: dark)').matches;
+            });
+
+            useEffect(() => {
+                document.documentElement.classList.toggle('dark', dark);
+                localStorage.setItem('rt-theme', dark ? 'dark' : 'light');
+            }, [dark]);
+
+            return [dark, setDark];
+        };
+
+        const AnimatedRoles = ({ roles }) => {
+            const [index, setIndex] = useState(0);
+            useEffect(() => {
+                const interval = setInterval(() => {
+                    setIndex((prev) => (prev + 1) % roles.length);
+                }, 2800);
+                return () => clearInterval(interval);
+            }, [roles.length]);
+
+            return (
+                <div className="mt-4 text-base font-medium tracking-[0.6rem] text-brand-200">
+                    <AnimatePresence mode="wait">
+                        <motion.span
+                            key={roles[index]}
+                            initial={{ opacity: 0, y: 12 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -12 }}
+                            transition={{ duration: 0.5 }}
+                            className="inline-block uppercase"
+                        >
+                            {roles[index]}
+                        </motion.span>
+                    </AnimatePresence>
+                </div>
+            );
+        };
+
+        const GithubStats = ({ username }) => {
+            const [stats, setStats] = useState(null);
+            const [loading, setLoading] = useState(true);
+            const [error, setError] = useState(null);
+
+            useEffect(() => {
+                const controller = new AbortController();
+                fetch(`https://api.github.com/users/${username}`, { signal: controller.signal })
+                    .then((res) => {
+                        if (!res.ok) throw new Error('Unable to fetch GitHub stats right now.');
+                        return res.json();
+                    })
+                    .then((data) => {
+                        setStats({
+                            repos: data.public_repos,
+                            followers: data.followers,
+                            following: data.following,
+                            avatar: data.avatar_url,
+                            bio: data.bio,
+                            url: data.html_url,
+                        });
+                    })
+                    .catch((err) => {
+                        if (err.name !== 'AbortError') setError(err.message);
+                    })
+                    .finally(() => setLoading(false));
+
+                return () => controller.abort();
+            }, [username]);
+
+            if (loading) {
+                return (
+                    <motion.div className="flex items-center gap-3 rounded-2xl border border-slate-800/60 bg-slate-900/60 p-6 backdrop-blur">
+                        <div className="h-10 w-10 animate-spin rounded-full border-2 border-brand-400 border-t-transparent"></div>
+                        <span className="text-sm text-slate-400">Fetching live GitHub activity…</span>
+                    </motion.div>
+                );
+            }
+
+            if (error || !stats) {
+                return (
+                    <motion.div className="rounded-2xl border border-red-500/40 bg-red-500/10 p-6 text-sm text-red-200">
+                        Unable to load GitHub stats right now. {error}
+                    </motion.div>
+                );
+            }
+
+            return (
+                <motion.a
+                    href={stats.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-slate-800/60 bg-gradient-to-br from-slate-900/70 to-slate-950/70 p-6 backdrop-blur transition hover:-translate-y-2 hover:border-brand-400/70 hover:shadow-2xl hover:shadow-brand-500/20"
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                >
+                    <div className="flex items-center gap-4">
+                        <img src={stats.avatar} alt="GitHub avatar" className="h-16 w-16 rounded-full border border-slate-700 object-cover" />
+                        <div>
+                            <div className="text-xs uppercase tracking-[0.4rem] text-brand-200">Live GitHub Pulse</div>
+                            <h3 className="text-xl font-semibold text-white">radhakrishna1210</h3>
+                            {stats.bio && <p className="text-sm text-slate-300">{stats.bio}</p>}
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-3 gap-4 text-center text-sm">
+                        <div className="rounded-xl bg-slate-800/50 py-3">
+                            <div className="text-2xl font-semibold text-brand-300">{stats.repos}</div>
+                            <div className="text-xs uppercase tracking-[0.3rem] text-slate-400">Repos</div>
+                        </div>
+                        <div className="rounded-xl bg-slate-800/50 py-3">
+                            <div className="text-2xl font-semibold text-brand-300">{stats.followers}</div>
+                            <div className="text-xs uppercase tracking-[0.3rem] text-slate-400">Followers</div>
+                        </div>
+                        <div className="rounded-xl bg-slate-800/50 py-3">
+                            <div className="text-2xl font-semibold text-brand-300">{stats.following}</div>
+                            <div className="text-xs uppercase tracking-[0.3rem] text-slate-400">Following</div>
+                        </div>
+                    </div>
+                    <span className="text-xs uppercase tracking-[0.32rem] text-brand-200">
+                        Explore GitHub
+                        <i className="fa-solid fa-arrow-up-right-from-square ml-2 text-[0.7rem]"></i>
+                    </span>
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-500/10 to-transparent opacity-0 transition group-hover:opacity-100"></div>
+                </motion.a>
+            );
+        };
+
+
+        const ContactForm = () => {
+            const [status, setStatus] = useState(null);
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                const form = e.currentTarget;
+                const formData = new FormData(form);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const message = formData.get('message');
+
+                const subject = `Portfolio Inquiry from ${name}`;
+                const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+                const mailto = `mailto:theteradhakrishna@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+                window.location.href = mailto;
+                form.reset();
+                setStatus("Thanks for reaching out! Your default email client just opened with your message.");
+            };
+
+            return (
+                <motion.div
+                    id="contact"
+                    className="relative overflow-hidden rounded-[32px] border border-slate-800/60 bg-gradient-to-br from-slate-900/80 to-slate-950/80 p-10 shadow-2xl shadow-brand-500/10 backdrop-blur-xl"
+                    initial={{ opacity: 0, y: 36 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                >
+                    <div className="absolute inset-0 bg-noise opacity-40 pointer-events-none"></div>
+                    <div className="mb-12 flex flex-col gap-4 text-left max-w-4xl">
+                        <div className="text-xs font-semibold uppercase tracking-[0.32rem] text-brand-300 dark:text-brand-200">Let's Build</div>
+                        <h2 className="text-3xl font-semibold text-slate-900 dark:text-white sm:text-4xl">Start a Conversation</h2>
+                        <p className="max-w-2xl text-base text-slate-600 dark:text-slate-300">Whether it’s advancing an AI product, solving a complex data challenge, or crafting stunning web experiences — I’d love to collaborate.</p>
+                    </div>
+                    <div className="space-y-8">
+                        <div className="space-y-8 rounded-3xl border border-slate-800/50 bg-slate-950/40 p-8">
+                            <div className="rounded-3xl border border-brand-400/20 bg-brand-500/10 p-6 text-sm text-brand-100">
+                                <p className="text-base font-semibold uppercase tracking-[0.35rem] text-brand-200">Response Time</p>
+                                <p className="mt-3 text-sm text-brand-50/80">
+                                    I typically reply within 24 hours. Include as much context as possible for a meaningful first response.
+                                </p>
+                            </div>
+                            <button
+                                onClick={() => window.open('Resume.pdf', '_blank')}
+                                className="group inline-flex w-full items-center justify-center gap-3 rounded-full border border-brand-400/60 bg-slate-900/60 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3rem] text-brand-200 transition hover:-translate-y-1 hover:border-brand-400/80 hover:bg-brand-500/10"
+                            >
+                                Resume
+                                <i className="fa-solid fa-file-pdf text-base"></i>
+                            </button>
+                        </div>
+                        <form onSubmit={handleSubmit} className="space-y-6 rounded-3xl border border-slate-800/50 bg-slate-950/40 p-8 backdrop-blur">
+                            <div className="grid gap-6 md:grid-cols-2">
+                                <label className="flex flex-col gap-2 text-sm uppercase tracking-[0.25rem] text-slate-400">
+                                    Name
+                                    <input
+                                        name="name"
+                                        type="text"
+                                        required
+                                        placeholder="Your full name"
+                                        className="rounded-2xl border border-slate-800/50 bg-slate-900/60 px-4 py-3 text-base text-white outline-none transition focus:border-brand-400 focus:ring-4 focus:ring-brand-500/20"
+                                    />
+                                </label>
+                                <label className="flex flex-col gap-2 text-sm uppercase tracking-[0.25rem] text-slate-400">
+                                    Email
+                                    <input
+                                        name="email"
+                                        type="email"
+                                        required
+                                        placeholder="you@example.com"
+                                        className="rounded-2xl border border-slate-800/50 bg-slate-900/60 px-4 py-3 text-base text-white outline-none transition focus:border-brand-400 focus:ring-4 focus:ring-brand-500/20"
+                                    />
+                                </label>
+                            </div>
+                            <label className="flex flex-col gap-2 text-sm uppercase tracking-[0.25rem] text-slate-400">
+                                Message
+                                <textarea
+                                    name="message"
+                                    required
+                                    placeholder="Tell me about your vision, timeline, and tech stack preferences…"
+                                    className="h-40 rounded-2xl border border-slate-800/50 bg-slate-900/60 px-4 py-3 text-base text-white outline-none transition focus:border-brand-400 focus:ring-4 focus:ring-brand-500/20"
+                                ></textarea>
+                            </label>
+                            <button
+                                type="submit"
+                                className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-brand-500 via-brand-400 to-brand-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3rem] text-white shadow-lg shadow-brand-500/30 transition hover:scale-[1.01]"
+                            >
+                                Send Message
+                                <i className="fa-solid fa-paper-plane text-base"></i>
+                            </button>
+                            {status && (
+                                <motion.p
+                                    initial={{ opacity: 0, y: 8 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="rounded-2xl border border-brand-400/30 bg-brand-500/10 p-4 text-center text-sm text-brand-100"
+                                >
+                                    {status}
+                                </motion.p>
+                            )}
+                        </form>
+                        <div className="flex justify-center gap-4 pt-6">
+                            <a
+                                href="https://github.com/radhakrishna1210"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-800/60 bg-slate-900/60 text-slate-300 transition hover:-translate-y-1 hover:border-brand-400/60 hover:text-white overflow-hidden"
+                                aria-label="GitHub"
+                            >
+                                <img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="GitHub" className="w-6 h-6 object-contain" />
+                            </a>
+                            <a
+                                href="https://www.linkedin.com/in/radhakrishna-thete-33640832b"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-800/60 bg-slate-900/60 text-slate-300 transition hover:-translate-y-1 hover:border-brand-400/60 hover:text-white overflow-hidden"
+                                aria-label="LinkedIn"
+                            >
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" className="w-6 h-6 object-contain" />
+                            </a>
+                            <a
+                                href="mailto:theteradhakrishna@gmail.com"
+                                className="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-800/60 bg-slate-900/60 text-slate-300 transition hover:-translate-y-1 hover:border-brand-400/60 hover:text-white overflow-hidden"
+                                aria-label="Email"
+                            >
+                                <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email" className="w-6 h-6 object-contain" />
+                            </a>
+                        </div>
+                    </div>
+                </motion.div>
+            );
+        };
+
+        const Navbar = ({ dark, setDark }) => {
+            const [open, setOpen] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setOpen(false);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <header className="fixed inset-x-0 top-0 z-50">
+                    <div className="mx-auto mt-6 max-w-6xl px-4">
+                        <motion.nav
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="relative flex items-center justify-between rounded-full border border-slate-800/60 bg-slate-950/70 px-6 py-3 shadow-lg shadow-brand-500/10 backdrop-blur-xl"
+                        >
+                            <a href="#home" className="flex items-center gap-3 flex-shrink-0">
+                                <span className="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-brand-400 text-sm font-bold text-white shadow-lg shadow-brand-500/50">
+                                    RT
+                                </span>
+                                <div className="flex flex-col items-start justify-center min-w-0">
+                                    <span className="text-xs font-semibold uppercase tracking-[0.25rem] text-brand-200 leading-tight whitespace-nowrap">Radhakrishna</span>
+                                    <span className="text-xs font-medium text-slate-300 leading-tight whitespace-nowrap">AI/ML Portfolio</span>
+                                </div>
+                            </a>
+                            <div className="hidden items-center gap-8 lg:flex">
+                                {navItems.map((item) => (
+                                    item.isExternal ? (
+                                        <button
+                                            key={item.id}
+                                            onClick={() => window.open('Resume.pdf', '_blank')}
+                                            className="text-xs font-semibold uppercase tracking-[0.35rem] text-slate-400 transition hover:text-brand-200"
+                                        >
+                                            {item.label}
+                                        </button>
+                                    ) : (
+                                        <a
+                                            key={item.id}
+                                            href={`#${item.id}`}
+                                            className="text-xs font-semibold uppercase tracking-[0.35rem] text-slate-400 transition hover:text-brand-200"
+                                        >
+                                            {item.label}
+                                        </a>
+                                    )
+                                ))}
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <button
+                                    onClick={() => setOpen((prev) => !prev)}
+                                    className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-800/60 bg-slate-900/60 text-slate-300 transition hover:border-brand-400/60 hover:text-white lg:hidden"
+                                    aria-label="Toggle navigation"
+                                >
+                                    <div className="flex flex-col items-center justify-center gap-0.5">
+                                        <span className="block w-4 h-0.5 bg-current rounded-full"></span>
+                                        <span className="block w-4 h-0.5 bg-current rounded-full"></span>
+                                        <span className="block w-4 h-0.5 bg-current rounded-full"></span>
+                                    </div>
+                                </button>
+                            </div>
+                            <AnimatePresence>
+                                {open && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -16 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -16 }}
+                                        className="absolute left-0 right-0 top-full mt-4 rounded-3xl border border-slate-800/60 bg-slate-950/80 p-6 shadow-lg shadow-brand-500/20 backdrop-blur-xl lg:hidden"
+                                    >
+                                        <div className="space-y-4">
+                                            {navItems.map((item) => (
+                                                item.isExternal ? (
+                                                    <button
+                                                        key={item.id}
+                                                        onClick={() => window.open('Resume.pdf', '_blank')}
+                                                        className="block text-sm font-semibold uppercase tracking-[0.3rem] text-slate-300 transition hover:text-brand-200"
+                                                    >
+                                                        {item.label}
+                                                    </button>
+                                                ) : (
+                                                    <a
+                                                        key={item.id}
+                                                        href={`#${item.id}`}
+                                                        className="block text-sm font-semibold uppercase tracking-[0.3rem] text-slate-300 transition hover:text-brand-200"
+                                                    >
+                                                        {item.label}
+                                                    </a>
+                                                )
+                                            ))}
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </motion.nav>
+                    </div>
+                </header>
+            );
+        };
+
+        const Hero = () => (
+            <section id="home" className="relative flex min-h-screen flex-col justify-center overflow-hidden pt-32">
+                <div className="pointer-events-none absolute inset-0 bg-radial-glow opacity-70 dark:opacity-90"></div>
+                <div className="pointer-events-none absolute inset-0 bg-radial-glow-2 opacity-80"></div>
+                <div className="pointer-events-none absolute inset-0 bg-radial-glow-3 opacity-60"></div>
+                <div className="bg-noise pointer-events-none absolute inset-0 opacity-30"></div>
+                <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-12 px-4 lg:flex-row">
+                    <motion.div
+                        initial={{ opacity: 0, x: -40 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.7, ease: 'easeOut' }}
+                        className="flex flex-1 flex-col justify-center gap-8"
+                    >
+                        <div className="inline-flex max-w-fit items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-5 py-2 text-xs uppercase tracking-[0.4rem] text-brand-200 shadow-lg shadow-brand-500/30 backdrop-blur">
+                            AI · ML · Web
+                            <span className="h-1 w-1 rounded-full bg-brand-300"></span>
+                            Futuristic Experience
+                        </div>
+                        <h1 className="text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
+                            Hi, I’m <span className="font-display text-transparent bg-clip-text bg-gradient-to-r from-brand-200 via-white to-brand-400">Radhakrishna Thete</span> — I build intelligent systems with code and curiosity.
+                        </h1>
+                        <p className="max-w-2xl text-lg text-slate-300">
+                            AI/ML developer blending human-centered design with production-grade engineering. From full-stack ML applications to immersive reactive interfaces, I architect solutions that scale and delight.
+                        </p>
+                        <AnimatedRoles roles={roles} />
+                        <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+                            <a
+                                href="#projects"
+                                className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-brand-500 via-brand-400 to-brand-600 px-8 py-4 text-sm font-semibold uppercase tracking-[0.35rem] text-white shadow-xl shadow-brand-500/40 transition hover:scale-[1.02]"
+                            >
+                                Explore Work
+                                <i className="fa-solid fa-arrow-right text-base"></i>
+                            </a>
+                            <div className="flex gap-3">
+                                {socialLinks.map((link) => (
+                                    <a
+                                        key={link.label}
+                                        href={link.href}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-800/60 bg-slate-900/60 text-lg text-slate-300 transition hover:-translate-y-1 hover:border-brand-400/60 hover:text-white overflow-hidden"
+                                        aria-label={link.label}
+                                        title={link.label}
+                                    >
+                                        {link.label === "GitHub" ? (
+                                            <img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="GitHub" className="w-6 h-6 object-contain" />
+                                        ) : link.label === "LinkedIn" ? (
+                                            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" className="w-6 h-6 object-contain" />
+                                        ) : link.label === "Email" ? (
+                                            <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email" className="w-6 h-6 object-contain" />
+                                        ) : (
+                                            <i className={`${link.icon} text-xl`}></i>
+                                        )}
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, x: 40 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.7, ease: 'easeOut' }}
+                        className="flex flex-1 items-center justify-center"
+                    >
+                        <div className="relative flex w-full max-w-lg flex-col items-center justify-center">
+                            <div className="absolute inset-0 rounded-[46px] bg-gradient-to-br from-brand-500/20 via-brand-400/10 to-transparent blur-3xl"></div>
+                            <div className="relative w-full rounded-[46px] border border-slate-800/50 bg-slate-900/70 p-6 shadow-[0_30px_120px_-50px_rgba(99,102,241,0.6)] backdrop-blur-xl overflow-hidden">
+                                <img 
+                                    src="assets/WhatsApp Image 2025-07-04 at 13.34.47_70b7ae3e.jpg" 
+                                    alt="Radhakrishna Thete" 
+                                    className="w-full h-auto rounded-3xl object-cover"
+                                />
+                                <div className="mt-6 rounded-3xl border border-slate-800/60 bg-slate-950/80 p-5 text-sm text-slate-300">
+                                    <p>
+                                        “Every model, API, and interface I ship is guided by one principle: make intelligence feel effortless and humane.”
+                                    </p>
+                                    <div className="mt-4 flex items-center gap-3 text-xs uppercase tracking-[0.3rem] text-brand-300">
+                                        <span className="h-2 w-2 rounded-full bg-brand-300"></span>
+                                        Open to AI/ML internships
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+        );
+
+        const About = () => (
+            <section id="about" className="relative mx-auto mt-32 max-w-6xl px-4">
+                <SectionTitle
+                    overline="About"
+                    title="Turning data into decisions, ideas into intelligent products."
+                    subtitle="B.Tech in AIML at Zeal College of Engineering & Research, Pune. I translate AI research into scalable systems — blending experimentation with disciplined engineering."
+                />
+                <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        className="space-y-6 rounded-[32px] border border-slate-800/60 bg-slate-900/70 p-8 shadow-2xl shadow-brand-500/10 backdrop-blur-xl"
+                    >
+                        <h3 className="text-xl font-semibold text-white">Who I am</h3>
+                        <p className="text-base text-slate-300">
+                            I’m an AI/ML developer passionate about turning data into decisions and models into real-world solutions. I love building full-stack ML apps using Python, Flask, React, TensorFlow, and PyTorch — always grounding the work in measurable impact.
+                        </p>
+                        <div className="rounded-3xl border border-brand-500/20 bg-brand-500/10 p-6 text-sm text-brand-100">
+                            <p className="text-xs uppercase tracking-[0.3rem] text-brand-200">Philosophy</p>
+                            <p className="mt-3 text-base">
+                                Empathy-driven intelligence. I design systems that support human decision making, not replace it — ensuring reliability, interpretability, and delight across the lifecycle.
+                            </p>
+                        </div>
+                        <div className="grid gap-6 md:grid-cols-2">
+                            {["AI-first mindset", "Rapid prototyping", "Responsible AI", "High-trust collaboration"].map((item) => (
+                                <div key={item} className="rounded-3xl border border-slate-800/50 bg-slate-950/60 p-5 text-sm text-slate-300">
+                                    <i className="fa-solid fa-circle-check mr-3 text-brand-300"></i>
+                                    {item}
+                                </div>
+                            ))}
+                        </div>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        className="space-y-6"
+                    >
+                        <div className="relative overflow-hidden rounded-[32px] border border-slate-800/60 bg-slate-900/70 p-6 backdrop-blur-xl">
+                            <h3 className="text-lg font-semibold text-white">Education Timeline</h3>
+                            <div className="mt-6 space-y-6">
+                                <TimelineItem
+                                    year="2022 — Present"
+                                    title="B.Tech · Artificial Intelligence & Machine Learning"
+                                    description="Zeal College of Engineering & Research, Pune — leading research groups, prototyping AI products, mentoring peers."
+                                    alignLeft
+                                />
+                                <TimelineItem
+                                    year="2023 — Present"
+                                    title="AI Innovation Projects"
+                                    description="Building NLP assistants, recommendation systems, and computer vision solutions with explainability & real-world constraints."
+                                />
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+        );
+
+        const Skills = () => (
+            <section id="skills" className="relative mx-auto mt-32 max-w-6xl px-4">
+                <SectionTitle
+                    overline="Skills"
+                    title="A full-stack ML toolkit engineered for shipping."
+                    subtitle="From data pipelines to responsive frontends, these are the tools I deploy to craft intelligent products end to end."
+                />
+                <div className="grid gap-8 lg:grid-cols-2">
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        className="rounded-[32px] border border-slate-800/60 bg-slate-900/70 p-8 shadow-2xl shadow-brand-500/10 backdrop-blur-xl"
+                    >
+                        <h3 className="text-lg font-semibold text-white">Technical Ecosystem</h3>
+                        <div className="mt-6 grid gap-6 md:grid-cols-2">
+                            {skills.map((skill) => (
+                                <div key={skill.label} className="rounded-3xl border border-slate-800/50 bg-slate-950/60 p-6">
+                                    <p className="text-xs uppercase tracking-[0.3rem] text-brand-200">{skill.label}</p>
+                                    <ul className="mt-4 space-y-2 text-sm text-slate-300">
+                                        {skill.items.map((item) => (
+                                            <li key={item} className="flex items-center gap-2">
+                                                <span className="h-2 w-2 rounded-full bg-brand-300"></span>
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        className="flex h-full flex-col justify-between gap-8"
+                    >
+                        <div className="rounded-[32px] border border-slate-800/60 bg-gradient-to-br from-brand-500/20 via-slate-900/70 to-slate-950/70 p-8 shadow-2xl shadow-brand-500/10 backdrop-blur-xl">
+                            <h3 className="text-lg font-semibold text-white">Design Pulse</h3>
+                            <p className="mt-4 text-sm text-slate-200">
+                                Fluent in glassmorphism, gradient-driven systems, micro-interactions, and multi-theme design systems. I craft experiences that feel future-forward yet accessible.
+                            </p>
+                            <div className="mt-6 grid gap-3 text-sm uppercase tracking-[0.3rem] text-brand-200">
+                                <span>Glassmorphism UI</span>
+                                <span>Framer Motion Animations</span>
+                                <span>Responsive Design Systems</span>
+                            </div>
+                        </div>
+                        <GithubStats username="radhakrishna1210" />
+                    </motion.div>
+                </div>
+            </section>
+        );
+
+        const Projects = () => (
+            <section id="projects" className="relative mx-auto mt-32 max-w-6xl px-4">
+                <SectionTitle
+                    overline="Projects"
+                    title="Selected work shaping intelligent products."
+                    subtitle="End-to-end solutions across ML, data, and modern web — engineered for production readiness and delightful user journeys."
+                />
+                <div className="grid gap-8 md:grid-cols-2">
+                    {projects.map((project, index) => (
+                        <motion.div
+                            key={project.title}
+                            initial={{ opacity: 0, y: 32 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{ delay: index * 0.05 }}
+                            className="group relative overflow-hidden rounded-[32px] border border-slate-800/60 bg-slate-900/70 p-8 shadow-2xl shadow-brand-500/10 backdrop-blur-xl transition hover:-translate-y-2 hover:border-brand-400/60 hover:shadow-brand-500/20"
+                        >
+                            <div className="flex items-center justify-between">
+                                <div className="text-3xl text-brand-300">
+                                    <i className={`fa-solid ${project.icon}`}></i>
+                                </div>
+                                <div className="rounded-full border border-brand-400/30 bg-brand-500/10 px-4 py-2 text-xs uppercase tracking-[0.3rem] text-brand-200">
+                                    Featured
+                                </div>
+                            </div>
+                            <h3 className="mt-6 text-2xl font-semibold text-white">{project.title}</h3>
+                            <p className="mt-3 text-sm text-slate-300">{project.description}</p>
+                            <div className="mt-6 flex flex-wrap gap-3 text-xs uppercase tracking-[0.25rem] text-brand-200">
+                                {project.tech.map((tech) => (
+                                    <span
+                                        key={tech}
+                                        className="rounded-full border border-brand-400/30 bg-brand-500/10 px-3 py-1 text-[0.65rem]"
+                                    >
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                            <div className="mt-8 flex items-center gap-4 text-sm">
+                                <a
+                                    href={project.live}
+                                    className="inline-flex items-center gap-2 text-brand-200 transition hover:text-white"
+                                >
+                                    Live Demo
+                                    <i className="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                </a>
+                                <a
+                                    href={project.github}
+                                    className="inline-flex items-center gap-2 text-slate-400 transition hover:text-white"
+                                >
+                                    GitHub
+                                    <i className="fa-brands fa-github text-base"></i>
+                                </a>
+                            </div>
+                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-500/10 via-transparent to-transparent opacity-0 transition group-hover:opacity-100"></div>
+                        </motion.div>
+                    ))}
+                </div>
+            </section>
+        );
+
+        const Achievements = () => (
+            <section id="achievements" className="relative mx-auto mt-32 max-w-6xl px-4">
+                <SectionTitle
+                    overline="Achievements"
+                    title="Impact beyond the code."
+                    subtitle="Recognitions, collaborations, and credentials that reflect commitment to excellence."
+                />
+                <div className="grid gap-8 lg:grid-cols-3">
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        className="rounded-[32px] border border-slate-800/60 bg-slate-900/70 p-8 backdrop-blur-xl"
+                    >
+                        <h3 className="text-lg font-semibold text-white">Internships</h3>
+                        <ul className="mt-6 space-y-4 text-sm text-slate-300">
+                            {achievements.internships.map((item) => (
+                                <li key={item} className="flex items-start gap-3">
+                                    <span className="mt-1 h-2 w-2 rounded-full bg-brand-300"></span>
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        className="rounded-[32px] border border-slate-800/60 bg-slate-900/70 p-8 backdrop-blur-xl"
+                    >
+                        <h3 className="text-lg font-semibold text-white">Awards</h3>
+                        <ul className="mt-6 space-y-4 text-sm text-slate-300">
+                            {achievements.awards.map((item) => (
+                                <li key={item} className="flex items-start gap-3">
+                                    <span className="mt-1 h-2 w-2 rounded-full bg-brand-300"></span>
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        className="rounded-[32px] border border-slate-800/60 bg-slate-900/70 p-8 backdrop-blur-xl"
+                    >
+                        <h3 className="text-lg font-semibold text-white">Certificates</h3>
+                        <ul className="mt-6 space-y-4 text-sm text-slate-300">
+                            {achievements.certificates.map((item) => (
+                                <li key={item} className="flex items-start gap-3">
+                                    <span className="mt-1 h-2 w-2 rounded-full bg-brand-300"></span>
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </motion.div>
+                </div>
+            </section>
+        );
+
+        const Footer = () => (
+            <footer className="relative mt-32 border-t border-slate-800/60 bg-slate-950/80">
+                <div className="bg-noise pointer-events-none absolute inset-0 opacity-40"></div>
+                <div className="relative mx-auto flex max-w-6xl flex-col gap-6 px-4 py-12 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="flex items-center gap-3 text-xs uppercase tracking-[0.35rem] text-brand-200">
+                        <span className="h-2 w-2 rounded-full bg-brand-300"></span>
+                        © {new Date().getFullYear()} Radhakrishna Thete
+                    </div>
+                    <div className="text-xs uppercase tracking-[0.35rem] text-slate-400">
+                        Designed with ❤️ using React · Tailwind CSS · Framer Motion
+                    </div>
+                    <div className="flex gap-3">
+                        {footerSocialLinks.map((link) => (
+                            <a
+                                key={link.label}
+                                href={link.href}
+                                className="flex h-10 w-10 items-center justify-center rounded-2xl border border-slate-800/60 bg-slate-900/60 text-slate-300 transition hover:-translate-y-1 hover:border-brand-400/60 hover:text-white overflow-hidden"
+                                target="_blank"
+                                rel="noreferrer"
+                                aria-label={link.label}
+                                title={link.label}
+                            >
+                                {link.label === "GitHub" ? (
+                                    <img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="GitHub" className="w-5 h-5 object-contain" />
+                                ) : link.label === "LinkedIn" ? (
+                                    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" className="w-5 h-5 object-contain" />
+                                ) : link.label === "Email" ? (
+                                    <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email" className="w-5 h-5 object-contain" />
+                                ) : (
+                                    <i className={`${link.icon} text-lg`}></i>
+                                )}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            </footer>
+        );
+
+        const App = () => {
+            const [dark, setDark] = useTheme();
+
+            useEffect(() => {
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register('./service-worker.js').catch((err) => {
+                        console.error('Service worker registration failed:', err);
+                    });
+                }
+            }, []);
+
+            useEffect(() => {
+                const handleHashNavigation = () => {
+                    const hash = window.location.hash.replace('#', '');
+                    if (hash) {
+                        const element = document.getElementById(hash);
+                        if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                };
+                handleHashNavigation();
+                window.addEventListener('hashchange', handleHashNavigation);
+                return () => window.removeEventListener('hashchange', handleHashNavigation);
+            }, []);
+
+            return (
+                <div className="relative overflow-x-hidden bg-slate-950 text-white">
+                    <Navbar dark={dark} setDark={setDark} />
+                    <main className="pb-32">
+                        <Hero />
+                        <About />
+                        <Skills />
+                        <Projects />
+                        <Achievements />
+                        <section className="relative mx-auto mt-32 max-w-6xl px-4">
+                            <ContactForm />
+                        </section>
+                    </main>
+                    <Footer />
+                </div>
+            );
+        };
+
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                const root = ReactDOM.createRoot(document.getElementById('root'));
+                root.render(<App />);
+            });
+        } else {
+            const root = ReactDOM.createRoot(document.getElementById('root'));
+            root.render(<App />);
+        }
+    </script>
+</body>
+</html>
