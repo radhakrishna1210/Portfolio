@@ -94,12 +94,12 @@
 
         const projects = [
             {
-                title: "BookNGo",
-                description: "Movie booking experience powered by TMDB API, realtime seat intelligence, and immersive UI.",
-                tech: ["React", "MongoDB", "Node.js"],
-                github: "https://github.com/",
-                live: "#",
-                icon: "fa-clapperboard",
+                title: "Resume Sorter",
+                description: "AI-powered resume filtering tool built with Streamlit and Google Gemini AI. Upload multiple resumes and filter using natural language queries.",
+                tech: ["Python", "Streamlit", "Gemini AI", "Pandas"],
+                github: "https://github.com/radhakrishna1210/resume_sorter.git",
+                live: "https://resume-sorter-6hgh.onrender.com/",
+                icon: "fa-filter",
             },
             {
                 title: "Melodify",
@@ -634,8 +634,8 @@
                                     <a
                                         key={link.label}
                                         href={link.href}
-                                        target="_blank"
-                                        rel="noreferrer"
+                                        target={link.href.startsWith('mailto:') ? undefined : "_blank"}
+                                        rel={link.href.startsWith('mailto:') ? undefined : "noreferrer"}
                                         className="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-800/60 bg-slate-900/60 text-lg text-slate-300 transition hover:-translate-y-1 hover:border-brand-400/60 hover:text-white overflow-hidden"
                                         aria-label={link.label}
                                         title={link.label}
@@ -934,9 +934,9 @@
                             <a
                                 key={link.label}
                                 href={link.href}
+                                target={link.href.startsWith('mailto:') ? undefined : "_blank"}
+                                rel={link.href.startsWith('mailto:') ? undefined : "noreferrer"}
                                 className="flex h-10 w-10 items-center justify-center rounded-2xl border border-slate-800/60 bg-slate-900/60 text-slate-300 transition hover:-translate-y-1 hover:border-brand-400/60 hover:text-white overflow-hidden"
-                                target="_blank"
-                                rel="noreferrer"
                                 aria-label={link.label}
                                 title={link.label}
                             >

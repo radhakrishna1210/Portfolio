@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rt-portfolio-cache-v2';
+const CACHE_NAME = 'rt-portfolio-cache-v3';
 const urlsToCache = [
   './index.html',
   './manifest.json',
