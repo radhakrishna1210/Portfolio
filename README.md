@@ -1,4 +1,4 @@
-# 🚀 Radhakrishna Thete - AI/ML Portfolio
+# 🚀 Radhakrishna Thete - AI/ML Portfolio.
 
 <div align="center">
 
