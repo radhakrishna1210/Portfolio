@@ -32,7 +32,7 @@ A modern, responsive Progressive Web App (PWA) portfolio showcasing AI/ML expert
 
 ## 🛠️ Tech Stack
 
-### Frontend.
+### Frontend
 - **React 18** - Component-based UI development
 - **Babel** - JavaScript transpilation
 - **Tailwind CSS** - Utility-first CSS framework
